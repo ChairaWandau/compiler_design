@@ -1,6 +1,7 @@
 %{
     // Подключаем код на flex
     #include "lexer.h"
+    #include "../src/tree.h"
     void yyerror(char const * msg);
     int line=1;
 %}

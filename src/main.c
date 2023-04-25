@@ -1,5 +1,6 @@
 #include "lexer.h"
 #include "sintax.h"
+#include "tree.h"
 int main(int argc, char **argv)
 {
     int out = 0;

@@ -5,6 +5,7 @@ TEST_OUT_DIR = tests/out
 BIN_DIR = bin
 BIN_NAME = output
 TEST = test_script.sh
+OBJS = main tree
 
 # Сборка, запуск и вывод кода завершения работы программы
 all_file: build 
@@ -12,7 +13,7 @@ all_file: build
 all_console: build 
 	sh start_console.sh
 # Сборка
-build: makedir sintax lexer main
+build: makedir sintax lexer $(OBJS)
 	gcc $(OBJ_DIR)/*.o -o $(BIN_DIR)/$(BIN_NAME)
 # Создание папок
 makedir: 
@@ -27,8 +28,8 @@ lexer.h:
 sintax:	lexer.h
 	bison $(SRC_DIR)/sintax.y --defines=$(GEN_DIR)/sintax.h -o $(GEN_DIR)/sintax.c
 	gcc $(GEN_DIR)/sintax.c -I$(GEN_DIR) -o $(OBJ_DIR)/sintax.o -c
-# Создание объектного файла из .с
-main:
+# Создание объектных файлов из .с
+$(OBJS):
 	gcc $(SRC_DIR)/$@.c -I$(GEN_DIR) -c -o $(OBJ_DIR)/$@.o
 # Запуск тестов
 test: build
