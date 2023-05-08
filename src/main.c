@@ -4,6 +4,8 @@
 int main(int argc, char **argv)
 {
     int out = 0;
+    // Создаем первый узел дерева
+    NodeDescription* ProgramNode = CreateNode(Node_PROGRAM);
     // Ошибка некорректного использования на ввод более одного файла
     if(argc > 2)
     {
@@ -21,14 +23,19 @@ int main(int argc, char **argv)
             return 1;
         }
         yyin = fpt;
-        out = yyparse();
-        //yyrestart(fpt);
-        //yylex();
+        yyparse(ProgramNode);
         fclose(fpt);
+        // Если нет ошибок - выводим дерево
+        if(!(out = GotError())) PrintNode(ProgramNode, 0, 0);
+        // Удаляем дерево (очищаем память)
+        DelNode(ProgramNode, 0);
         return out;
     }
     // Чтение с консоли
-    out = yyparse();
-    //yylex();
+    yyparse(ProgramNode);
+    // Если нет ошибок - выводим дерево
+    if(!(out = GotError())) PrintNode(ProgramNode, 0, 0);
+    // Удаляем дерево (очищаем память)
+    DelNode(ProgramNode, 0);
     return out;
 }

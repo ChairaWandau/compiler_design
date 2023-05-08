@@ -35,7 +35,7 @@ $(OBJS):
 test: build
 	sh $(TEST) $(BIN_DIR)/$(BIN_NAME)
 # Удаление созданных папок
-clean:
+clear:
 	rm -fr $(BIN_DIR) $(OBJ_DIR) $(GEN_DIR) $(TEST_OUT_DIR)
 
 

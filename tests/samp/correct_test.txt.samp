@@ -1,0 +1,33 @@
+<PROGRAM>
+|-<BAND>
+| |-<BOR>
+| | |-<ILIT, 0x1>
+| | |-<ILIT, 0x2>
+| |-<ILIT, 0xF>
+|-<ASSIGN>
+| |-<IDENTIFIER, "b">
+| |-<ILIT, 0x7>
+|-<CALL, "bswap">
+| |-<IDENTIFIER, "b">
+|-<CALL, "_0abcs">
+| |-<IDENTIFIER, "A_B_C">
+| |-<IDENTIFIER, "a_b_c">
+|-<BXOR>
+| |-<ILIT, 0x578>
+| |-<ILIT, 0x123>
+|-<BNOT>
+| |-<ILIT, 0xF>
+|-<CALL, "f">
+  |-<IDENTIFIER, "x">
+  |-<IDENTIFIER, "y">
+  |-<BOR>
+  | |-<ILIT, 0x1>
+  | |-<ILIT, 0x2>
+  |-<CALL, "z">
+    |-<IDENTIFIER, "t">
+    |-<CALL, "r">
+    |-<CALL, "c">
+      |-<IDENTIFIER, "s">
+      |-<IDENTIFIER, "m">
+      |-<CALL, "l">
+      |-<ILIT, 0xF>

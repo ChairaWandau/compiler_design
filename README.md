@@ -26,7 +26,6 @@ make all_file
 make build
 Перед запуском "FILE_NAME" надо заменить на путь до файла
 bin/output FILE_NAME
-echo $?
 
 ===============Тест===============
 
@@ -35,4 +34,4 @@ make test
 
 ===============Чистка проекта от лишнего===============
 
-make clean
+make clear
