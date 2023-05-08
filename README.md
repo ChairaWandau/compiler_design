@@ -35,6 +35,7 @@ bin/output FILE_NAME
 ### Тест
 
 Вывод тестов лежит в папке tests/out
+
 make test
 
 ### Чистка проекта от лишнего
