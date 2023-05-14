@@ -48,12 +48,21 @@
 %type<NodeValue> input line func func_arg oper assignment
 %type<StringValue> identifier ilit
 
+%destructor { if($$!= ProgramNode && $$ != NULL) {DelNode($$, 0);}} <NodeValue>
+%destructor { free($$); } <StringValue>
+
 %%
-    input: 
+    input:  { 
+                $$ = NULL; 
+            }
         | input line  
             {
                 if($2!=NULL){
                     AddChildNode (ProgramNode, $2);
+                    $$ = ProgramNode; 
+                }
+                else{
+                    $$ = NULL; 
                 }
             }
     ;
@@ -125,6 +134,7 @@
                 $$ = CreateNode(Node_CALL);
                 SetIDENTIFIER($$, $1);
                 AddChildrenFromNode($$, $3);
+
                 free($1);
             }
     ;
@@ -137,7 +147,9 @@
             { 
                 $$ = CreateNode(Node_CALL);
                 AddChildrenFromNode($$, $1);
+
                 AddChildrenFromNode($$, $3);
+
             }
     ;
     assignment: identifier ASSIGN oper 

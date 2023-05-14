@@ -37,6 +37,7 @@ NodeDescription* CreateNode(NodeType Type){
     NodeDescription* NewNode;
     // Выделяем память под него
     NewNode = calloc(1, sizeof(NodeDescription));
+    assert(NewNode != NULL);
     // Присваиваем тип узла
     NewNode->Type = Type;
     // При создании узла у него еще нет дочерних узлов
@@ -85,10 +86,15 @@ void AddChildrenFromNode(NodeDescription* Node, NodeDescription* NodeWithChildre
     // Добавляем все новые дочерние узлы 
     for(int i=0; i< NodeWithChildren->NumberOfChildren; i++){
         Node->Children[Node->NumberOfChildren+i]=NodeWithChildren->Children[i];
+        // Очищаем детей узла, чьи дочерние узлы добавляем (потому что этот узел нам уже не нужен, его нужно полность очистить)
+        NodeWithChildren->Children[i]=NULL;
     }
     // Увеличиваем число дочерних узлов на количество детей узла, чьи дочерние узлы добавляем
     Node->NumberOfChildren += NodeWithChildren->NumberOfChildren;
-    //Node->Children = NodeWithChildren->Children;
+    // Освобождаем весь массив детей
+    free(NodeWithChildren->Children);
+    // Освобождаем весь узел
+    free(NodeWithChildren);
 }
 //----------------------------------------------------------------
 /// @brief Рекурсивное удаление всего дерева
