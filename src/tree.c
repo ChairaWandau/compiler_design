@@ -37,7 +37,6 @@ NodeDescription* CreateNode(NodeType Type){
     NodeDescription* NewNode;
     // Выделяем память под него
     NewNode = calloc(1, sizeof(NodeDescription));
-    assert(NewNode != NULL);
     // Присваиваем тип узла
     NewNode->Type = Type;
     // При создании узла у него еще нет дочерних узлов
